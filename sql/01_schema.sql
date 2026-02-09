@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS ingestion_runs (
+    id SERIAL PRIMARY KEY,
+    run_ts TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    status TEXT NOT NULL,
+    notes TEXT
+);

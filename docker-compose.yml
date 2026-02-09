@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: intraday_postgres
+    environment:
+      POSTGRES_USER: intraday
+      POSTGRES_PASSWORD: intraday
+      POSTGRES_DB: intraday
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/sql
+
+volumes:
+  postgres_data:

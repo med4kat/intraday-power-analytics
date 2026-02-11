@@ -17,3 +17,9 @@ It ingests raw ENTSO-E data, converts timestamps to **UTC**, and shows **what ch
 docker compose up -d
 python -m src.ingest.ingest_load_csv
 python -m src.report.what_changed
+```
+
+To shut down the container and delete DBs:
+```bash
+docker compose down -v 
+```

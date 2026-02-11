@@ -1,0 +1,2 @@
+ALTER TABLE raw_load
+ADD COLUMN IF NOT EXISTS forecast_load_mw NUMERIC;

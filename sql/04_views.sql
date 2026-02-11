@@ -3,6 +3,7 @@ SELECT DISTINCT ON (market)
   market,
   ts AS ts_utc,
   load_mw,
+  forecast_load_mw,
   source_file,
   NOW() - ts AS age_interval
 FROM raw_load

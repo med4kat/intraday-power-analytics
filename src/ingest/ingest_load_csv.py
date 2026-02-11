@@ -36,6 +36,7 @@ def ingest_file(file_path: Path) -> int:
             "MTU (CET/CEST)",
             "Area",
             "Actual Total Load (MW)",
+            "Day-ahead Total Load Forecast (MW)"
         }
 
         if not required.issubset(reader.fieldnames or []):
@@ -48,18 +49,21 @@ def ingest_file(file_path: Path) -> int:
                 for row in reader:
                     ts_utc = parse_mtu_to_utc(row["MTU (CET/CEST)"])
                     market = row["Area"].strip()
-                    load_mw = row["Actual Total Load (MW)"]
+                    load_mw = row["Actual Total Load (MW)"].strip()
+                    forecast = row["Day-ahead Total Load Forecast (MW)"].strip()
+
 
                     cur.execute(
                         """
-                        INSERT INTO raw_load (market, ts, load_mw, source_file)
-                        VALUES (%s, %s, %s, %s)
+                        INSERT INTO raw_load (market, ts, load_mw, forecast_load_mw, source_file)
+                        VALUES (%s, %s, %s, %s, %s)
                         ON CONFLICT DO NOTHING
                         """,
                         (
                             market,
                             ts_utc,
                             load_mw,
+                            forecast,
                             file_path.name,
                         ),
                     )
@@ -94,3 +98,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+

@@ -2,7 +2,14 @@
 
 A **desk-style intraday analytics tool** for European power markets.
 
-It ingests raw ENTSO-E data, converts timestamps to **UTC**, and shows **what changed**, **by how much**, and **whether it matters now**.
+## Business Problem
+
+European power market data is published in multiple files, uses different time zones (CET/CEST), and is not immediately suitable for comparison across markets or reporting periods.
+
+This project ingests and normalises ENTSO-E data into a consistent UTC-based model, allowing traders and analysts to quickly answer:
+
+**Which markets changed, by how much, and where should I look first?**
+
 
 ## What it does
 - Ingests ENTSO-E CSVs unchanged  
